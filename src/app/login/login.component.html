@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="login-row">
+    <mat-card class="Card">
+      <h1 style="text-align: center">Sign In</h1>
+      <br />
+      <form class="example-form" [formGroup]="loginForm">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="enter username"
+            formControlName="username"
+          />
+          <mat-error>User Name is Required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            placeholder="enter Password"
+            formControlName="password"
+          />
+          <mat-error>Password is Required</mat-error>
+        </mat-form-field>
+        <button mat-button type="submit" (click)="Submit()">Sign In</button>
+      </form>
+      <br />
+      <ng-container *ngIf="this.loggedIn">
+        <h4 style="text-align: center; font-size: 1.5rem; color: Red">
+          Invalid Details
+        </h4>
+      </ng-container>
+      <a routerLink="/signup">Don't Have Account Sign UP</a>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "user_name": "Lokesh",
+      "Password": "Captain99@",
+      "Admin": true
+    },
+    {
+      "id": "2",
+      "user_name": "Shreyesh",
+      "Password": "Loki",
+      "Admin": false
+    },
+    {
+      "id": "3",
+      "user_name": "Prakash",
+      "Password": "Loki",
+      "Admin": false
+    },
+    {
+      "id": "4",
+      "user_name": "Krish",
+      "Password": "Loki",
+      "Admin": false
+    },
+    {
+      "id": "5",
+      "user_name": "Kishore",
+      "Password": "Wipro@123",
+      "Admin": false
+    }
+  ],
+  "movies": [
+    {
+      "Name": "Avenger",
+      "Year": "2022",
+      "Description": "Action and Thriller ada",
+      "id": "1"
+    },
+    {
+      "Name": "BAT MAN",
+      "Year": "2005",
+      "Description": "gOOD",
+      "id": "2"
+    }
+  ],
+  "Favourite": [
+    {
+      "Movie_id": 1,
+      "user_id": 3,
+      "id": "2"
+    },
+    {
+      "Movie_id": 2,
+      "user_id": 3,
+      "id": "3"
+    }
+  ]
+}

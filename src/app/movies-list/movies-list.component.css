@@ -1,0 +1,14 @@
+.form-flex {
+  height: 25rem;
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+}
+.flex-container {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-start;
+}

@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="SignUp-row">
+    <mat-card class="Card">
+      <h1 style="text-align: center">Sign Up</h1>
+      <br />
+      <form class="example-form" #myForm="ngForm" [formGroup]="SignUpForm">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="enter username"
+            formControlName="username"
+          />
+          <mat-error
+            *ngIf="this.SignUpForm.controls['username'].errors?.['required']"
+            >User Name is Required</mat-error
+          >
+          <mat-error
+            *ngIf="!this.SignUpForm.controls['username'].errors?.['required']"
+            >upto 10 characters only</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            placeholder="enter Password"
+            formControlName="password"
+          />
+          <mat-error>Password is Required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input
+            type="password"
+            matInput
+            placeholder="enter Password"
+            formControlName="confirmpassword"
+          />
+          <mat-error
+            *ngIf="this.SignUpForm.controls['confirmpassword'].errors?.['required']"
+            >Confirm Password is Required</mat-error
+          >
+          <mat-error
+            *ngIf="this.SignUpForm.controls['confirmpassword'].errors?.['passwordMismatch']"
+            >Password Mismatch</mat-error
+          >
+        </mat-form-field>
+        <ng-container *ngIf="mismatch"
+          ><p style="color: red; margin-top: -2rem">
+            Password is Mismatch
+          </p></ng-container
+        >
+        <button mat-button type="submit" (click)="Submit(); myForm.resetForm()">
+          Sign Up
+        </button>
+        <ng-container *ngIf="this.userExists; else Sucess">
+          <h4 style="text-align: center; font-size: 1.5rem; color: Red">
+            {{ text }}
+          </h4>
+        </ng-container>
+        <ng-template #Sucess>
+          <ng-container>
+            <h4 style="text-align: center; font-size: 1.5rem; color: green">
+              {{ text }}
+            </h4>
+          </ng-container>
+        </ng-template>
+      </form>
+      <a routerLink="/login">Already had an Account login Here!! </a>
+      <br />
+    </mat-card>
+  </div>
+</div>

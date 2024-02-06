@@ -1,0 +1,151 @@
+<div class="container">
+  <h1>Welcome {{ this.username }}</h1>
+  <button mat-stroked-button color="primary" (click)="logout()">Log Out</button>
+</div>
+<mat-tab-group (selectedTabChange)="tabClick($event)">
+  <mat-tab label="Movies List">
+    <br />
+    <div class="container flex-container">
+      <button mat-raised-button color="primary" *ngIf="isAdmin" (click)="Add()">
+        Add Movie
+      </button>
+      <mat-form-field *ngIf="isAdmin">
+        <mat-label> Search </mat-label>
+        <input
+          type="text"
+          placeholder="Search By Movie Name"
+          matInput
+          (input)="Search($event.target)"
+        />
+      </mat-form-field>
+    </div>
+    <br>
+    <ng-container>
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th scope="col">MovieName</th>
+              <th scope="col">Year</th>
+              <th scope="col">Description</th>
+              <th *ngIf="isAdmin" scope="col">Edit</th>
+              <th *ngIf="isAdmin" scope="col">Delete</th>
+              <th *ngIf="!isAdmin" scope="col">Favourite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let Movie of this.Movies">
+              <!-- <th scope="row">1</th> -->
+              <td>{{ Movie.id }}</td>
+              <td>{{ Movie.Name }}</td>
+              <td>{{ Movie.Year }}</td>
+              <td>
+                {{ Movie.Description }}
+              </td>
+              <td *ngIf="isAdmin">
+                <button mat-button color="accent" (click)="update(Movie.id)">
+                  Edit
+                </button>
+              </td>
+              <td *ngIf="isAdmin">
+                <button mat-button color="warn" (click)="delete(Movie.id)">
+                  Delete
+                </button>
+              </td>
+              <td *ngIf="!isAdmin">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="AddFavourite(Movie.id)"
+                >
+                  Favourite
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+    <ng-template #updateDialog let-data>
+      <form [formGroup]="updateData" class="form-flex">
+        <h2 matDialogTitle>{{ this.description }}</h2>
+        <mat-form-field>
+          <mat-label>MovieName</mat-label>
+          <input type="text" matInput formControlName="Name" required />
+          <mat-error
+            *ngIf="this.updateData.controls['Year'].errors?.['required']"
+            >Required Filed</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Year</mat-label>
+          <input type="text" matInput formControlName="Year" required />
+          <mat-error
+            *ngIf="this.updateData.controls['Year'].errors?.['pattern']"
+            >Only numbers</mat-error
+          >
+          <mat-error
+            *ngIf="this.updateData.controls['Year'].errors?.['required']"
+            >Required Filed</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input type="text" matInput formControlName="Description" required />
+          <mat-error
+            *ngIf="this.updateData.controls['Year'].errors?.['required']"
+            >Required Filed</mat-error
+          >
+        </mat-form-field>
+        <mat-dialog-actions align="end">
+          <button mat-button color="warn" matDialogClose="no">Cancel</button>
+          <button
+            type="submit"
+            (click)="EditClicked ? Updatedetails(data[0].id) : AddMovie()"
+            color="primary"
+            mat-button
+          >
+            Submit
+          </button>
+        </mat-dialog-actions>
+      </form>
+    </ng-template>
+  </mat-tab>
+  <mat-tab *ngIf="!isAdmin" label="Favourite List">
+    <br>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th scope="col">MovieName</th>
+            <th scope="col">Year</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Movie of this.FavouriteMovies">
+            <!-- <th scope="row">1</th> -->
+            <td>{{ Movie.id }}</td>
+            <td>{{ Movie.Name }}</td>
+            <td>{{ Movie.Year }}</td>
+            <td>
+              {{ Movie.Description }}
+            </td>
+            <td *ngIf="!isAdmin">
+              <button
+                mat-button
+                color="warn"
+                (click)="RemoveFavourite(Movie.Movie_id, Movie.id)"
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>

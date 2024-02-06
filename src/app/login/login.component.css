@@ -1,0 +1,18 @@
+.container {
+  max-width: 90%;
+  height: 90%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Card {
+  height: 25rem;
+  width: 25rem;
+}
+.example-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+}
