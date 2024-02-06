@@ -1,4 +1,5 @@
-# MoviesAdmin
+# MoviesManagementSystem
+Created a Web aplication using Angular Where the user can do Crud Operation of the movies and also makes Favorite List of movies. added a search feature and pagination.created a signup and login forms for userAuthenthication on role based.
 Used JSON Server to store the details of users, Movies, Favourite List to watch the users.json use this command to install json-server 
 npm install json-server and after that run this command to watch the users.json the default port is 3000 npx json-server users.json.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1.
